@@ -1,0 +1,5 @@
+# Veloura Motors ERD
+
+This is the first version of the database design.
+
+It may be updated during development.
