@@ -9,4 +9,6 @@ class Setting extends Model
 {
     /** @use HasFactory<\Database\Factories\SettingFactory> */
     use HasFactory;
+ protected $fillable = ['site_name','site_email','phone','logo','country','city','street','year'];
+
 }
