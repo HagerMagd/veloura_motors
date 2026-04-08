@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('booking_requests', function (Blueprint $table) {
             $table->id();
+            $table->string('messege');
+            $table->enum('ststus',['pending','approved','rejected']);
+            $table->foreignId('car_id')->nullable()->constrained('cars')->nullOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
         });
     }
