@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Car;
 use App\Models\CarImage;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,7 +19,8 @@ class CarImageFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'path'=>fake()->imageUrl(),
+            'car_id'=> Car::inRandomOrder()->first()->id,
         ];
     }
 }

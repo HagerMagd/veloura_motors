@@ -19,7 +19,7 @@ return new class extends Migration
             $table->year('year');
             $table->decimal('price');
             $table->decimal('mileage');
-            $table->enum('fuel_type',['petrol','diesel','electric','hybird']);
+            $table->enum('fuel_type',['petrol','diesel','electric','hybrid']);
             $table->enum('transmission',['manual','automatic']);
             $table->string('desc');
             $table->boolean('status')->default(1);

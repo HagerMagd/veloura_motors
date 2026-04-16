@@ -21,6 +21,12 @@ return new class extends Migration
             $table->string('city');
             $table->string('street');
             $table->year('year');
+            
+            
+           
+            
+
+
             $table->timestamps();
         });
     }
