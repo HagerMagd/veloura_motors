@@ -27,16 +27,18 @@ class SettingServiceProvider extends ServiceProvider
                 [
                     "site_name" => 'Veloura Motors',
                     "logo" => 'logo',
+                    'bio'=>'Welcome To Our Veloura Motors Website',
                     "site_email" => 'Veloura@gmail.com',
                     'phone' => '01289490393',
                     'year' => '2026',
                     'country' => 'Egypt',
                     'city' => 'Damitta',
                     'street' => 'near nail',
-
+                     'facebook' => 'https://www.facebook.com/',
+                    'instagram'=>'https://www.instagram.com/',
+                    'whatsapp'=> 'https://wa.me/',
                 ]
             );
-
             $settings->whatsapp = 'https://wa.me/' . $settings->phone;
             view()->share('settings', $settings);
         }

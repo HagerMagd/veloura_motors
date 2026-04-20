@@ -14,12 +14,16 @@ return new class extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->string('site_name');
+            $table->string('bio');
             $table->string('site_email');
             $table->string('phone');
             $table->string('logo');
             $table->string('country');
             $table->string('city');
             $table->string('street');
+            $table->string('facebook');
+            $table->string('instagram');
+            $table->string('whatsapp');
             $table->year('year');
             
             
