@@ -9,26 +9,27 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 animate-fade-left">
-                    <h1 class="hero-title">Find Your Perfect <span>Luxury</span> Vehicle</h1>
-                    <p class="hero-subtitle">Discover an exclusive collection of premium automobiles. From elegant
-                        sedans to powerful sports cars, we bring you the finest in automotive excellence.</p>
+                    <h1 class="hero-title">{{$hero_section->title}}</h1>
+                    <p class="hero-subtitle">{{$hero_section->subtitle}}.</p>
                     <div class="hero-buttons">
                         <a href="#cars" class="btn btn-primary-custom">
-                            <i class="bi bi-search me-2"></i>Browse Cars
+                            <i class="bi bi-search me-2"></i>
+
+                            {{$hero_section->btn1_text}}
                         </a>
                         <a href="#sell" class="btn btn-outline-custom">
-                            <i class="bi bi-car-front me-2"></i>Sell Your Car
+                            <i class="bi bi-car-front me-2"></i>{{$hero_section->btn2_text}}
                         </a>
                         <a href="#contact" class="btn btn-outline-custom">
-                            <i class="bi bi-telephone me-2"></i>Contact Us
+                            <i class="bi bi-telephone me-2"></i> {{$hero_section->btn3_text}}
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-6 animate-fade-right">
                     <div class="hero-image">
-                        <img src="{{asset('assets/images/hero-car.jpg')}}" alt="Luxury Sports Car">
+                        <img src="{{ asset($hero_section->image) }}" alt="Luxury Sports Car">
                         <div class="hero-badge">
-                            <h4>500+</h4>
+                            <h4>{{$car_count}} + </h4>
                             <p>Premium Vehicles</p>
                         </div>
                     </div>

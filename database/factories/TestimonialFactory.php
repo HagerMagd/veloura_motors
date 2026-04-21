@@ -25,7 +25,7 @@ class TestimonialFactory extends Factory
                 'testimonials/2.jpg',
                 'testimonials/3.jpg',
             ]),
-            'comment' => fake()->paragraph(),
+            'comment' => fake()->sentence(),
             'rating' => fake()->numberBetween(1, 5),
 
         ];
