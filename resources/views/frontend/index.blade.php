@@ -4,24 +4,24 @@
 @endsection
 
 @section('body')
-        <!-- Hero Section -->
+    <!-- Hero Section -->
     <section class="hero-section" id="home">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 animate-fade-left">
-                    <h1 class="hero-title">{{$hero_section->title}}</h1>
-                    <p class="hero-subtitle">{{$hero_section->subtitle}}.</p>
+                    <h1 class="hero-title">{{ $hero_section->title }}</h1>
+                    <p class="hero-subtitle">{{ $hero_section->subtitle }}.</p>
                     <div class="hero-buttons">
                         <a href="#cars" class="btn btn-primary-custom">
                             <i class="bi bi-search me-2"></i>
 
-                            {{$hero_section->btn1_text}}
+                            {{ $hero_section->btn1_text }}
                         </a>
                         <a href="#sell" class="btn btn-outline-custom">
-                            <i class="bi bi-car-front me-2"></i>{{$hero_section->btn2_text}}
+                            <i class="bi bi-car-front me-2"></i>{{ $hero_section->btn2_text }}
                         </a>
                         <a href="#contact" class="btn btn-outline-custom">
-                            <i class="bi bi-telephone me-2"></i> {{$hero_section->btn3_text}}
+                            <i class="bi bi-telephone me-2"></i> {{ $hero_section->btn3_text }}
                         </a>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                     <div class="hero-image">
                         <img src="{{ asset($hero_section->image) }}" alt="Luxury Sports Car">
                         <div class="hero-badge">
-                            <h4>{{$car_count}} + </h4>
+                            <h4><span class="counter" data-target="{{ $car_count }}">0</span>+</h4>
                             <p>Premium Vehicles</p>
                         </div>
                     </div>
@@ -45,35 +45,22 @@
             <p class="section-subtitle">Experience automotive excellence with our premium services and handpicked
                 selection of luxury vehicles.</p>
             <div class="row g-4">
-                <div class="col-md-4 animate-fade-up delay-1">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="bi bi-shield-check"></i>
+
+                @foreach ($features as $feature)
+                    <div class="col-md-4 animate-fade-up delay-1">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="{{ $feature->icon }}"></i>
+                            </div>
+                            <h4>{{ $feature->title }}</h4>
+                            <p>{{ $feature->description }}</p>
                         </div>
-                        <h4>Certified Quality</h4>
-                        <p>Every vehicle undergoes a rigorous 150-point inspection to ensure premium quality and
-                            reliability.</p>
                     </div>
-                </div>
-                <div class="col-md-4 animate-fade-up delay-2">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="bi bi-currency-dollar"></i>
-                        </div>
-                        <h4>Best Price Guarantee</h4>
-                        <p>We offer competitive pricing with transparent deals and no hidden fees on all vehicles.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 animate-fade-up delay-3">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="bi bi-headset"></i>
-                        </div>
-                        <h4>Premium Support</h4>
-                        <p>Our dedicated team provides 24/7 assistance for all your automotive needs and queries.</p>
-                    </div>
-                </div>
+                @endforeach
+
+
             </div>
+        </div>
         </div>
     </section>
 
@@ -83,110 +70,80 @@
         <div class="container">
             <h2 class="section-title">Latest Arrivals</h2>
             <p class="section-subtitle">Freshly added premium vehicles waiting for their next owner.</p>
-
             <div class="row g-4">
-                <div class="col-md-6 col-lg-3">
-                    <div class="car-card">
-                        <div class="car-image">
-                            <img src="{{asset('assets/images/car-1.jpg')}}" alt="BMW X7">
-                            <span class="car-badge">Latest</span>
-                        </div>
-                        <div class="car-content">
-                            <h4>BMW X7</h4>
-                            <div class="car-price">$98,000</div>
-                            <div class="car-specs">
-                                <span class="car-spec"><i class="bi bi-fuel-pump"></i> Petrol</span>
-                                <span class="car-spec"><i class="bi bi-speedometer"></i> 240 km/h</span>
+                @foreach ($latest_cars as $car)
+                    <div class="col-md-6 col-lg-3">
+                        <div class="car-card">
+                            <div class="car-image">
+                                <img src="{{ asset($car->carimages->first()->path ?? 'assets/images/sell-car.jpg') }}"
+                                    alt="BMW X7">
+                                <span class="car-badge">Latest</span>
+                            </div>
+                            <div class="car-content">
+                                <h4>{{ $car->name }}</h4>
+                                <div class="car-price">{{ $car->price }}</div>
+                                <div class="car-specs">
+                                    <span class="car-spec"><i class="bi bi-fuel-pump"></i>
+                                        {{ ucfirst($car->fuel_type) }}</span>
+                                    <span class="car-spec"><i class="bi bi-speedometer"></i> {{ $car->mileage }}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
+
+
         </div>
     </section>
 
     <!-- Why Choose Us -->
+
     <section class="why-section">
         <div class="container">
             <h2 class="section-title">The LuxeDrive Advantage</h2>
             <p class="section-subtitle">Discover why thousands of customers trust us for their luxury car purchases.</p>
             <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="why-card">
-                        <div class="why-icon"><i class="bi bi-star-fill"></i></div>
-                        <div>
-                            <h5>Premium Selection</h5>
-                            <p>Handpicked collection of the finest luxury and performance vehicles.</p>
+                @foreach ($advantages as $advantage)
+                    <div class="col-md-6 col-lg-4">
+                        <div class="why-card">
+                            <div class="why-icon"><i class="{{ $advantage->icon }}"></i></div>
+                            <div>
+                                <h5>{{ $advantage->title }}</h5>
+                                <p>{{ $advantage->description }} .</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="why-card">
-                        <div class="why-icon"><i class="bi bi-truck"></i></div>
-                        <div>
-                            <h5>Home Delivery</h5>
-                            <p>Convenient doorstep delivery anywhere in the country.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="why-card">
-                        <div class="why-icon"><i class="bi bi-credit-card"></i></div>
-                        <div>
-                            <h5>Easy Financing</h5>
-                            <p>Flexible payment plans and quick loan approvals.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="why-card">
-                        <div class="why-icon"><i class="bi bi-arrow-repeat"></i></div>
-                        <div>
-                            <h5>Trade-In Options</h5>
-                            <p>Fair valuations and hassle-free trade-in process.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="why-card">
-                        <div class="why-icon"><i class="bi bi-patch-check"></i></div>
-                        <div>
-                            <h5>Extended Warranty</h5>
-                            <p>Comprehensive coverage for your peace of mind.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="why-card">
-                        <div class="why-icon"><i class="bi bi-tools"></i></div>
-                        <div>
-                            <h5>Service Center</h5>
-                            <p>State-of-the-art maintenance and repair facilities.</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
+
+
             </div>
         </div>
+        </div>
     </section>
+
+
     <!-- Statistics / Numbers -->
     <section class="stats-section">
         <div class="container">
             <div class="row text-center g-4">
                 <div class="col-md-3">
                     <div class="stat-box">
-                        <h2>500+</h2>
+                       <h2><span class="counter" data-target="{{ $car_count  }}">0</span>+</h2>
                         <p>Cars Sold</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="stat-box">
-                        <h2>120+</h2>
+                        <h2><span class="counter" data-target="{{ $brand_count  }}">0</span>+</h2>
+                        
                         <p>Luxury Brands</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="stat-box">
-                        <h2>98%</h2>
+                        <h2><span class="counter" data-target="{{ $user_count }}">0</span>+</h2>
                         <p>Happy Clients</p>
                     </div>
                 </div>
@@ -206,60 +163,60 @@
             <h2 class="section-title">Featured Vehicles</h2>
             <p class="section-subtitle">Explore our handpicked selection of premium automobiles ready for you.</p>
             <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="car-card">
-                        <div class="car-image">
-                            <img src="{{asset('assets/images/car-2.jpg')}}" alt="Mercedes-Benz S-Class">
-                            <span class="car-badge">Featured</span>
-                        </div>
-                        <div class="car-content">
-                            <h4>Mercedes-Benz S-Class</h4>
-                            <div class="car-price">$89,900</div>
-                            <div class="car-specs">
-                                <span class="car-spec"><i class="bi bi-fuel-pump"></i> Hybrid</span>
-                                <span class="car-spec"><i class="bi bi-speedometer"></i> 250 km/h</span>
-                                <span class="car-spec"><i class="bi bi-gear"></i> Auto</span>
+
+                @foreach ($featured_cars as $featured)
+                    <div class="col-md-6 col-lg-4">
+
+                        <div class="car-card">
+
+                            <div class="car-image">
+
+                                <img src="{{ asset($featured->carimages->first()->path ?? 'assets/images/sell-car.jpg') }}"
+                                    alt="{{ $featured->name }}">
+
+                                <span class="car-badge">Featured</span>
+
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="car-card">
-                        <div class="car-image">
-                            <img src="{{asset('assets/images/car-3.jpg')}}" alt="Ferrari Roma">
-                            <span class="car-badge">New Arrival</span>
-                        </div>
-                        <div class="car-content">
-                            <h4>Ferrari Roma</h4>
-                            <div class="car-price">$245,000</div>
-                            <div class="car-specs">
-                                <span class="car-spec"><i class="bi bi-fuel-pump"></i> Petrol</span>
-                                <span class="car-spec"><i class="bi bi-speedometer"></i> 320 km/h</span>
-                                <span class="car-spec"><i class="bi bi-gear"></i> Auto</span>
+
+                            <div class="car-content">
+
+                                <h4>{{ $featured->name }}</h4>
+
+                                <div class="car-price">
+                                    ${{ number_format($featured->price) }}
+                                </div>
+
+                                <div class="car-specs">
+
+                                    <span class="car-spec">
+                                        <i class="bi bi-fuel-pump"></i>
+                                        {{ ucfirst($featured->fuel_type) }}
+                                    </span>
+
+                                    <span class="car-spec">
+                                        <i class="bi bi-speedometer"></i>
+                                        {{ $featured->mileage }} km/h
+                                    </span>
+
+                                    <span class="car-spec">
+                                        <i class="bi bi-gear"></i>
+                                        {{ ucfirst($featured->transmission) }}
+                                    </span>
+
+                                </div>
+
                             </div>
+
                         </div>
+
                     </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="car-card">
-                        <div class="car-image">
-                            <img src="{{asset('assets/images/hero-car.jpg')}}" alt="Range Rover Sport">
-                            <span class="car-badge">Popular</span>
-                        </div>
-                        <div class="car-content">
-                            <h4>Range Rover Sport</h4>
-                            <div class="car-price">$112,500</div>
-                            <div class="car-specs">
-                                <span class="car-spec"><i class="bi bi-fuel-pump"></i> Diesel</span>
-                                <span class="car-spec"><i class="bi bi-speedometer"></i> 225 km/h</span>
-                                <span class="car-spec"><i class="bi bi-gear"></i> Auto</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
+
+
             <div class="text-center mt-5">
-                <a href="#" class="btn btn-primary-custom btn-lg">
+                <a href="{{route('cars.index')}}" class="btn btn-primary-custom btn-lg">
                     View All Cars <i class="bi bi-arrow-right ms-2"></i>
                 </a>
             </div>
@@ -285,7 +242,7 @@
                         <p class="testimonial-text">"Exceptional service from start to finish. The team helped me find
                             the perfect Mercedes for my family. Highly recommend LuxeDrive!"</p>
                         <div class="testimonial-author">
-                            <img src="{{asset('assets/images/testimonial-1.jpg')}}" alt="James Wilson">
+                            <img src="{{ asset('assets/images/testimonial-1.jpg') }}" alt="James Wilson">
                             <div>
                                 <h5>James Wilson</h5>
                                 <p>Business Executive</p>
@@ -305,7 +262,7 @@
                         <p class="testimonial-text">"The buying experience was seamless. No pressure sales, fair
                             pricing, and they delivered my Ferrari right to my doorstep. Amazing!"</p>
                         <div class="testimonial-author">
-                            <img src="{{asset('assets/images/testimonial-2.jpg')}}" alt="Sarah Mitchell">
+                            <img src="{{ asset('assets/images/testimonial-2.jpg') }}" alt="Sarah Mitchell">
                             <div>
                                 <h5>Sarah Mitchell</h5>
                                 <p>Entrepreneur</p>
@@ -325,7 +282,7 @@
                         <p class="testimonial-text">"Professional staff, beautiful showroom, and an incredible selection
                             of luxury vehicles. LuxeDrive made my dream car a reality."</p>
                         <div class="testimonial-author">
-                            <img src="{{asset('assets/images/testimonial-3.jpg')}}" alt="Robert Anderson">
+                            <img src="{{ asset('assets/images/testimonial-3.jpg') }}" alt="Robert Anderson">
                             <div>
                                 <h5>Robert Anderson</h5>
                                 <p>Retired Judge</p>
@@ -343,7 +300,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 animate-fade-left">
                     <div class="sell-image">
-                        <img src="{{asset('assets/images/sell-car.jpg')}}" alt="Sell Your Car">
+                        <img src="{{ asset('assets/images/sell-car.jpg') }}" alt="Sell Your Car">
                     </div>
                 </div>
                 <div class="col-lg-6 animate-fade-right">
@@ -368,63 +325,115 @@
 
     <!-- Brands -->
     <section class="brands-section py-5">
-    <div class="container">
-        <h2 class="section-title text-center mb-4">Our Premium Brands</h2>
+        <div class="container">
+            <h2 class="section-title text-center mb-4">Our Premium Brands</h2>
 
-        <div class="row text-center g-4">
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="brand-card">
-                    <i class="bi bi-car-front-fill"></i>
-                    <h6>Mercedes</h6>
+            <div class="row text-center g-4">
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="brand-card">
+                        <i class="bi bi-car-front-fill"></i>
+                        <h6>Mercedes</h6>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="brand-card">
-                    <i class="bi bi-speedometer2"></i>
-                    <h6>BMW</h6>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="brand-card">
+                        <i class="bi bi-speedometer2"></i>
+                        <h6>BMW</h6>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="brand-card">
-                    <i class="bi bi-lightning-charge-fill"></i>
-                    <h6>Audi</h6>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="brand-card">
+                        <i class="bi bi-lightning-charge-fill"></i>
+                        <h6>Audi</h6>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="brand-card">
-                    <i class="bi bi-trophy-fill"></i>
-                    <h6>Porsche</h6>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="brand-card">
+                        <i class="bi bi-trophy-fill"></i>
+                        <h6>Porsche</h6>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="brand-card">
-                    <i class="bi bi-fire"></i>
-                    <h6>Ferrari</h6>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="brand-card">
+                        <i class="bi bi-fire"></i>
+                        <h6>Ferrari</h6>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-6 col-md-4 col-lg-2">
-                <div class="brand-card">
-                    <i class="bi bi-gem"></i>
-                    <h6>Bentley</h6>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="brand-card">
+                        <i class="bi bi-gem"></i>
+                        <h6>Bentley</h6>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <section class="sell-section">
-    <div class="container text-center">
-        <h2 class="section-title">Ready To Drive Your Dream Car?</h2>
-        <p class="section-subtitle">Explore our full luxury collection and book your next ride today.</p>
-        <a href="#cars" class="btn btn-primary-custom btn-lg">
-            Browse All Vehicles
-        </a>
-    </div>
-</section>
-<!-- Call To Action -->
+        <div class="container text-center">
+            <h2 class="section-title">Ready To Drive Your Dream Car?</h2>
+            <p class="section-subtitle">Explore our full luxury collection and book your next ride today.</p>
+            <a href="#cars" class="btn btn-primary-custom btn-lg">
+                Browse All Vehicles
+            </a>
+        </div>
+    </section>
+    <!-- Call To Action -->
 @endsection
+
+@push('js')
+    <script>
+        const counters = document.querySelectorAll('.counter');
+
+        const observer = new IntersectionObserver(entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    const counter = entry.target;
+
+                    const target = +counter.dataset.target;
+
+                    let current = 0;
+
+                    const increment = target / 100;
+
+                    const updateCounter = () => {
+
+                        current += increment;
+
+                        if (current < target) {
+
+                            counter.innerText = Math.ceil(current);
+
+                            requestAnimationFrame(updateCounter);
+
+                        } else {
+
+                            counter.innerText = target;
+
+                        }
+                    };
+
+                    updateCounter();
+
+                    observer.unobserve(counter);
+                }
+
+            });
+
+        }, {
+            threshold: 0.5
+        });
+
+        counters.forEach(counter => {
+            observer.observe(counter);
+        });
+    </script>
+@endpush

@@ -13,7 +13,7 @@ class Car extends Model
 {
     /** @use HasFactory<\Database\Factories\CarFactory> */
     use HasFactory;
-    protected $fillable = ['name','model','year','price','mileage','fuel_type','transmission','desc','status','admin_id','brand_id'];
+    protected $fillable = ['name','model','year','price','mileage','fuel_type','transmission','desc','status','admin_id','brand_id','featured'];
     public function brand(){
         return $this->belongsTo(Brand::class);
     }

@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
             BookingRequestSeeder::class,
             TestimonialSeeder::class,
             HeroSectionSeeder::class,
+            FeatureSeeder::class,
+            AdvantageSeeder::class,
 
         ]);
     }
