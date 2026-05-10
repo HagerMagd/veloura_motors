@@ -11,4 +11,5 @@ Route::get('/', function () {
 
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/cars',[CarController::class,'index'])->name('cars.index');
+Route::get('/featuredCars',[CarControlle::class,'featuredCars'])->name('featuredCars');
 

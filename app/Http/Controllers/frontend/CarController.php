@@ -13,4 +13,10 @@ class CarController extends Controller
 
         return view('frontend.showcar',compact('cars'));
     }
+
+    public function featuredCars(){
+        $featuredCars=Car::with('carimages')->where('featured','1')->latest()->paginate(9);
+        re
+    
+    }
 }

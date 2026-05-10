@@ -130,14 +130,14 @@
             <div class="row text-center g-4">
                 <div class="col-md-3">
                     <div class="stat-box">
-                       <h2><span class="counter" data-target="{{ $car_count  }}">0</span>+</h2>
+                        <h2><span class="counter" data-target="{{ $car_count }}">0</span>+</h2>
                         <p>Cars Sold</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="stat-box">
-                        <h2><span class="counter" data-target="{{ $brand_count  }}">0</span>+</h2>
-                        
+                        <h2><span class="counter" data-target="{{ $brand_count }}">0</span>+</h2>
+
                         <p>Luxury Brands</p>
                     </div>
                 </div>
@@ -216,7 +216,7 @@
 
 
             <div class="text-center mt-5">
-                <a href="{{route('cars.index')}}" class="btn btn-primary-custom btn-lg">
+                <a href="{{ route('cars.index') }}" class="btn btn-primary-custom btn-lg">
                     View All Cars <i class="bi bi-arrow-right ms-2"></i>
                 </a>
             </div>
@@ -230,66 +230,34 @@
             <p class="section-subtitle">Real experiences from our valued customers who found their dream cars with us.
             </p>
             <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                        <p class="testimonial-text">"Exceptional service from start to finish. The team helped me find
-                            the perfect Mercedes for my family. Highly recommend LuxeDrive!"</p>
-                        <div class="testimonial-author">
-                            <img src="{{ asset('assets/images/testimonial-1.jpg') }}" alt="James Wilson">
-                            <div>
-                                <h5>James Wilson</h5>
-                                <p>Business Executive</p>
+
+                @foreach ($testimonials as $testimonial)
+                    <div class="col-md-4">
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars">
+
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($i <= $testimonial->rating)
+                                        <i class="bi bi-star-fill"></i>
+                                    @else
+                                        <i class="bi bi-star"></i>
+                                    @endif
+                                @endfor
+
+                            </div>
+                            <p class="testimonial-text">{{ $testimonial->comment }}</p>
+                            <div class="testimonial-author">
+                                <img src="{{ asset($testimonial->image) }}" alt="James Wilson">
+                                <div>
+                                    <h5>{{ $testimonial->name }}</h5>
+                                    <p>{{ $testimonial->job_title }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                        <p class="testimonial-text">"The buying experience was seamless. No pressure sales, fair
-                            pricing, and they delivered my Ferrari right to my doorstep. Amazing!"</p>
-                        <div class="testimonial-author">
-                            <img src="{{ asset('assets/images/testimonial-2.jpg') }}" alt="Sarah Mitchell">
-                            <div>
-                                <h5>Sarah Mitchell</h5>
-                                <p>Entrepreneur</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                        <p class="testimonial-text">"Professional staff, beautiful showroom, and an incredible selection
-                            of luxury vehicles. LuxeDrive made my dream car a reality."</p>
-                        <div class="testimonial-author">
-                            <img src="{{ asset('assets/images/testimonial-3.jpg') }}" alt="Robert Anderson">
-                            <div>
-                                <h5>Robert Anderson</h5>
-                                <p>Retired Judge</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
+
             </div>
         </div>
     </section>
@@ -329,48 +297,19 @@
             <h2 class="section-title text-center mb-4">Our Premium Brands</h2>
 
             <div class="row text-center g-4">
-                <div class="col-6 col-md-4 col-lg-2">
-                    <div class="brand-card">
-                        <i class="bi bi-car-front-fill"></i>
-                        <h6>Mercedes</h6>
-                    </div>
-                </div>
 
-                <div class="col-6 col-md-4 col-lg-2">
-                    <div class="brand-card">
-                        <i class="bi bi-speedometer2"></i>
-                        <h6>BMW</h6>
-                    </div>
-                </div>
+                @foreach ($brands as $brand)
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="brand-card">
+                            <img src="{{ asset($brand->logo_path )}}" alt="{{ $brand->name }}" class="brand-logo">
 
-                <div class="col-6 col-md-4 col-lg-2">
-                    <div class="brand-card">
-                        <i class="bi bi-lightning-charge-fill"></i>
-                        <h6>Audi</h6>
+                            <h6>{{ $brand->name }}</h6>
+                        </div>
                     </div>
-                </div>
+                @endforeach
 
-                <div class="col-6 col-md-4 col-lg-2">
-                    <div class="brand-card">
-                        <i class="bi bi-trophy-fill"></i>
-                        <h6>Porsche</h6>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-4 col-lg-2">
-                    <div class="brand-card">
-                        <i class="bi bi-fire"></i>
-                        <h6>Ferrari</h6>
-                    </div>
-                </div>
-
-                <div class="col-6 col-md-4 col-lg-2">
-                    <div class="brand-card">
-                        <i class="bi bi-gem"></i>
-                        <h6>Bentley</h6>
-                    </div>
-                </div>
             </div>
+        </div>
         </div>
     </section>
 
