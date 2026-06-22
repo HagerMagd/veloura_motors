@@ -282,8 +282,8 @@
                             <li><i class="bi bi-check"></i> We handle all paperwork</li>
                             <li><i class="bi bi-check"></i> Free pickup from your location</li>
                         </ul>
-                        <a href="#contact" class="btn btn-primary-custom btn-lg">
-                            Get Free Quote <i class="bi bi-arrow-right ms-2"></i>
+                        <a href="{{route('sellform')}}" class="btn btn-primary-custom btn-lg">
+                            join us now<i class="bi bi-arrow-right ms-2"></i>
                         </a>
                     </div>
                 </div>
@@ -317,7 +317,7 @@
         <div class="container text-center">
             <h2 class="section-title">Ready To Drive Your Dream Car?</h2>
             <p class="section-subtitle">Explore our full luxury collection and book your next ride today.</p>
-            <a href="#cars" class="btn btn-primary-custom btn-lg">
+            <a href="{{ route('featuredCars') }}" class="btn btn-primary-custom btn-lg">
                 Browse All Vehicles
             </a>
         </div>

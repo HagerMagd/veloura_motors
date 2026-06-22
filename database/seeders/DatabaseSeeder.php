@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Car;
 use App\Models\User;
+use Database\Seeders\SellRequestSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -28,6 +29,8 @@ class DatabaseSeeder extends Seeder
             HeroSectionSeeder::class,
             FeatureSeeder::class,
             AdvantageSeeder::class,
+            SellRequestSeeder::class,
+            SellRequestImageSeeder::class,
 
         ]);
     }

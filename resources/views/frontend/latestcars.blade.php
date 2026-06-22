@@ -1,6 +1,6 @@
 @extends('layouts.layouts_frontend.app')
 @section('title')
-   Featured Car Datails
+   Latests Car Datails
 @endsection
 @section('body')
 
@@ -8,19 +8,19 @@
    
  <section class="cars-section" id="cars">
         <div class="container">
-            <h2 class="section-title">Featured Vehicles</h2>
+            <h2 class="section-title">OUR LATEST CARS </h2>
             <p class="section-subtitle">Explore our handpicked selection of premium automobiles ready for you.</p>
             <div class="row g-4">
 
-                @foreach ($featuredCars as $featuredCar)
+                @foreach ($latest_cars as $latest_car)
                     <div class="col-md-6 col-lg-4">
 
                         <div class="car-card">
 
                             <div class="car-image">
 
-                                <img src="{{ asset( $featuredCar->carimages->first()->path ?? 'assets/images/sell-car.jpg') }}"
-                                    alt="{{  $featuredCar->name }}">
+                                <img src="{{ asset( $latest_car->carimages->first()->path ?? 'assets/images/sell-car.jpg') }}"
+                                    alt="{{  $latest_car->name }}">
 
                                 
 
@@ -28,27 +28,27 @@
 
                             <div class="car-content">
 
-                                <h4>{{  $featuredCar->name }}</h4>
+                                <h4>{{  $latest_car->name }}</h4>
 
                                 <div class="car-price">
-                                    ${{ number_format( $featuredCar->price) }}
+                                    ${{ number_format( $latest_car->price) }}
                                 </div>
 
                                 <div class="car-specs">
 
                                     <span class="car-spec">
                                         <i class="bi bi-fuel-pump"></i>
-                                        {{ ucfirst( $featuredCar->fuel_type) }}
+                                        {{ ucfirst( $latest_car->fuel_type) }}
                                     </span>
 
                                     <span class="car-spec">
                                         <i class="bi bi-speedometer"></i>
-                                        {{  $featuredCar->mileage }} km/h
+                                        {{  $latest_car->mileage }} km/h
                                     </span>
 
                                     <span class="car-spec">
                                         <i class="bi bi-gear"></i>
-                                        {{ ucfirst( $featuredCar->transmission) }}
+                                        {{ ucfirst( $latest_car->transmission) }}
                                     </span>
 
                                 </div>
@@ -65,6 +65,6 @@
 
           
         </div>
-         {{ $featuredCars->links()}}
+         {{ $latest_cars->links()}}
     </section>
 @endsection
