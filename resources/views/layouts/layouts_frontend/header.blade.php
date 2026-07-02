@@ -76,14 +76,14 @@
 
                 <!-- Reviews -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{route('testimonial')}}">
                         Reviews
                     </a>
                 </li>
 
                 <!-- Contact -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#contact">
+                    <a class="nav-link" href="{{route('contact.us')}}">
                         Contact
                     </a>
                 </li>

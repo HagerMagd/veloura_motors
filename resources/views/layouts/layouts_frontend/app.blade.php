@@ -8,6 +8,7 @@
     <meta name="description"
         content="Discover luxury and performance at LuxeDrive. Explore our exclusive collection of premium vehicles.">
 
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -20,6 +21,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <!-- Social Bar -->
     <div class="social-bar">
@@ -37,7 +39,7 @@
     @include('layouts.layouts_frontend.footer')
 
     <!-- Bootstrap JS -->
-  
+
 
     <!-- Smooth scroll and animations -->
     <script>
@@ -71,6 +73,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.5.2/js/fileinput.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @stack('js')
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: "{{ session('success') }}",
+                timer: 3000,
+                showConfirmButton: false,
+                timerProgressBar: true
+            });
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "{{ session('error') }}",
+                timer: 3000,
+                showConfirmButton: false,
+                timerProgressBar: true
+            });
+        </script>
+    @endif
+
 </body>
 
 </html>
